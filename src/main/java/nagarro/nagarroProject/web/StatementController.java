@@ -72,7 +72,9 @@ public class StatementController {
     	List<Statement> statementListFromToDate = new ArrayList<Statement>();
     	List<Statement> statementListAllDetails = new ArrayList<Statement>();
     	List<Statement> statementListByAccId = new ArrayList<Statement>();
+    	List<Statement> statementListFinal = new ArrayList<Statement>();
     	SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+    	String message = "success";
     	try {
     		if (statementDto.getAccountId() != null && statementDto.getAccountId() >=0.0)
     		{
@@ -82,7 +84,8 @@ public class StatementController {
 	        
 	    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-	    	 if ( auth != null &&auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("User1")))
+	    	 if ( auth != null && auth.getAuthorities() != null && auth.getAuthorities().size() > 0 && 
+	    			 auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("User1")))
 	    	{
 	    		 if ( (statementDto.getAccountId() != null && statementDto.getAccountId() < 0.0) ||
 	 	    			(statementDto.getFromAmount() != null && statementDto.getFromAmount().compareTo(BigDecimal.ZERO) < 0) || 
@@ -95,8 +98,7 @@ public class StatementController {
 	 	    					)
 	 	    	{
 	 		        log.info("invalid parameter provided");
-
-	 	    		model.addAttribute("message","Invalid parameter" );
+	 		        message = "Invalid parameter" ;
 	 	    	}
 	    		else if( statementDto.getAccountId() != null && statementDto.getAccountId() >=0 )
 	    		{
@@ -107,14 +109,14 @@ public class StatementController {
 		    				|| (!StringUtils.isEmpty(statementDto.getFromDate()) && StringUtils.isEmpty(statementDto.getToDate())))
 	    			{
 	    		        log.info("invalid range parameter provided");
-	    	    		model.addAttribute("message","Invalid range parameter" );
+		 		        message = "Invalid range parameter" ;
 	    		        
 	    			}
 	    			else if (statementDto.getFromAmount() == null && statementDto.getToAmount() == null
 		    				&& StringUtils.isEmpty(statementDto.getFromDate()) && StringUtils.isEmpty(statementDto.getToDate()))
 		    		{
 			            log.info(" account id : " + statementDto.getAccountId());
-			        	model.addAttribute("statementList",statementListByAccId);
+			            statementListFinal = statementListByAccId;
 			    	}
 		        	
 		    		else if (statementDto.getFromAmount() != null && statementDto.getToAmount() != null
@@ -132,7 +134,7 @@ public class StatementController {
 		        			}
 		        		}
 		            	log.info("statement list: " + statementListFromToAmount);
-		            	model.addAttribute("statementList",statementListFromToAmount);
+			            statementListFinal = statementListFromToAmount;
 		
 		    			
 		    		}
@@ -153,8 +155,7 @@ public class StatementController {
 		        			}
 		        		}
 		            	log.info("statement list: " + statementListFromToDate);
-		
-		            	model.addAttribute("statementList",statementListFromToDate);
+			            statementListFinal = statementListFromToDate;
 		
 		    			
 		    		}
@@ -177,20 +178,20 @@ public class StatementController {
 		        			}
 		        		}
 		            	log.info("statement list: " + statementListAllDetails);
-		
-		            	model.addAttribute("statementList",statementListAllDetails);
+			            statementListFinal = statementListAllDetails;
 		
 		    			
 		    		}
 	    		}
 	    		else
 	    		{
-		    		model.addAttribute("message","please enter account id" );	
+	    			message= "please enter account id";
 	   			}
 	    		
 		    		
 	    	}
-	    	else if (auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("User2")))
+	    	else if (auth != null && auth.getAuthorities() != null && auth.getAuthorities().size() > 0 && 
+	    			auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("User2")))
 	    	{
 		    	if (statementDto.getAccountId()== null && statementDto.getFromAmount() == null && statementDto.getToAmount() == null
 		    			&& StringUtils.isEmpty(statementDto.getFromDate()) && StringUtils.isEmpty(statementDto.getToDate()) && auth != null) 
@@ -215,16 +216,16 @@ public class StatementController {
 		    			}
 		    		}
 		        	log.info("statement list: " + statementListThreeMonths);
-		    		
-		        	model.addAttribute("statementList",statementListThreeMonths);
+		            statementListFinal = statementListThreeMonths;
 		    	}
 		    	else 
 		    	{
-		    		model.addAttribute("message","insufficient privileges" );
+		    		message = "insufficient privileges";
 		    	}
 	    	}
-	    	  
-	    	
+	        model.addAttribute("statementList",statementListFinal);
+  
+	    	model.addAttribute("message",message );
 	    	log.info("view statement - end");
 	    	
     	}
