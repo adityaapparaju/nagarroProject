@@ -21,19 +21,14 @@ public class StatementRepositoryImpl implements StatementRepository {
 	@Autowired
     private JdbcTemplate jdbcTemplate;
 	
-	
 	@Autowired
-	PasswordEncoder passwordEncoder;
+	SecurityConfiguration securityConfiguration;
 	
-	@Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
 	@SuppressWarnings("deprecation")
 	@Override
 	public List<Statement> findAllByAccountId(Double accountId) {
 		// TODO Auto-generated method stub
+		
 		return  jdbcTemplate.query(
                 "select a.account_number as accNumber, "
                 + "s.ID as stId, s.datefield as stDateField, s.account_id as stAccId,"
@@ -45,28 +40,30 @@ public class StatementRepositoryImpl implements StatementRepository {
                                 (rs.getDouble("stAccId")),
                                 rs.getString("stDateField"),
                                 new BigDecimal(rs.getString("stAmount")),
-                                passwordEncoder.encode(rs.getString("accNumber"))
+                                securityConfiguration.passwordEncoder().encode(rs.getString("accNumber"))
                         )
 				);
 	}
 
 	@Override
-	public List<Statement> findAll() {             
+	public List<Statement> findAll() {
 		// TODO Auto-generated method stub
 		return jdbcTemplate.query(
 				 "select a.account_number as accNumber, "
-			                + "s.ID as statementId, s.datefield as stDateField, s.account_id as stAccId,"
+			                + "s.ID as stId, s.datefield as stDateField, s.account_id as stAccId,"
 			                + "s.amount as stAmount from account a join statement s on a.ID = s.account_id",
 			                (rs, rowNum) ->
                         new Statement(
-                                rs.getInt("statementId"),
-                                rs.getDouble("stAccId"),
-                                rs.getString("stDateField"),
-                                new BigDecimal(rs.getString("stAmount")),
-                                passwordEncoder.encode(rs.getString("accNumber"))
+                                rs.getInt("id"),
+                                rs.getDouble("account_id"),
+                                rs.getString("datefield"),
+                                new BigDecimal(rs.getString("amount")),
+                                securityConfiguration.passwordEncoder().encode(rs.getString("accNumber"))
                         )
         );
 	}
+	
+
 	
 	
 }
