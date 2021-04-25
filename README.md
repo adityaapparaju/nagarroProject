@@ -19,22 +19,23 @@ After successful login, user is directed to main page to view statements:
 
 
 The user has the option to view statements by account id input, and results will populate:
+![find by account id](https://user-images.githubusercontent.com/83164368/115994896-f87f7e00-a5e9-11eb-8434-2ee06e6b1d6d.png)
 
-![find by account id result](https://user-images.githubusercontent.com/83164368/115991377-1abcd000-a5d9-11eb-8882-ac0edd6bd217.png)
 
 The user has the option to view statements by account id, from and to amount input, and results will populate:
 
-![findByAccountId-fromAmount-toAmount](https://user-images.githubusercontent.com/83164368/115991411-52c41300-a5d9-11eb-97e1-03b4963e55a1.png)
+![find by account id - from amount - to amount - result](https://user-images.githubusercontent.com/83164368/115994851-cec65700-a5e9-11eb-984b-d4d4d29bc097.png)
+
 
 The user has the option to view statements by account id, from and to date input, and results will populate:
 
-![find by account id - from date - to date](https://user-images.githubusercontent.com/83164368/115991435-6f604b00-a5d9-11eb-9de1-a19c1ca3a65e.png)
+
+![find by account id - from date - to date](https://user-images.githubusercontent.com/83164368/115994841-bfdfa480-a5e9-11eb-80da-ee1b232b41d2.png)
 
 
 The user has the option to view statements by account id, from and to amount,from and to date input, and results will populate:
 
-![find by account id all detail](https://user-images.githubusercontent.com/83164368/115991520-dc73e080-a5d9-11eb-8253-f555a4d86737.png)
-
+![find by account id all detail](https://user-images.githubusercontent.com/83164368/115994834-b6eed300-a5e9-11eb-9f0d-dbb230a1e367.png)
 
 If account id is not given, user is requested to provide account id
 
