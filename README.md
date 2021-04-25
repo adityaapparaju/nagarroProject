@@ -18,3 +18,9 @@ After successful login, user is directed to main page to view statements:
 ![main page](https://user-images.githubusercontent.com/83164368/115991219-99653d80-a5d8-11eb-8d6c-7a4fbf0b0361.png)
 
 
+The user has the option to view statements by account id input, and results will populate:
+
+![find by account id result](https://user-images.githubusercontent.com/83164368/115991377-1abcd000-a5d9-11eb-8882-ac0edd6bd217.png)
+
+
+
