@@ -61,12 +61,16 @@
                 <th>account id</th>
                 <th>date field</th>
                 <th>amount</th>
+                <th>account number</th>
+                
                        </tr>
             <tr th:each="statement : ${statementList}">
                 <td th:text="${statement.id}">Id</a></td>
                 <td th:text="${statement.accountId}">accountId</td>
                 <td th:text="${statement.dateField}">dateField</td>
-                <td th:text="${statement.amount}">amount</td>                
+                <td th:text="${statement.amount}">amount</td>  
+                <td th:text="${statement.accountNumber}">accountNumber</td>                               
+                              
                    </tr>
         </table>
         
