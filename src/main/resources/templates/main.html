@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
     <title>Main</title>
 
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 <body>
 
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <th:block th:include="fragments/header :: header"></th:block> 
 	<div th:text="${message}">
     </div>
     <h2>Statement Form</h2>
@@ -57,20 +57,18 @@
         <h2>Statement List</h2>
         <table class="table table-striped">
             <tr>
-            	<th>Id</th>
-                <th>account id</th>
-                <th>date field</th>
-                <th>amount</th>
-                <th>account number</th>
-                
+            	<th scope="col">Id</th>
+                <th scope="col">account id</th>
+                <th scope="col">date field</th>
+                <th scope="col">amount</th>
+                <th scope="col">account number</th>
                        </tr>
             <tr th:each="statement : ${statementList}">
                 <td th:text="${statement.id}">Id</a></td>
                 <td th:text="${statement.accountId}">accountId</td>
                 <td th:text="${statement.dateField}">dateField</td>
-                <td th:text="${statement.amount}">amount</td>  
+                <td th:text="${statement.amount}">amount</td> 
                 <td th:text="${statement.accountNumber}">accountNumber</td>                               
-                              
                    </tr>
         </table>
         
