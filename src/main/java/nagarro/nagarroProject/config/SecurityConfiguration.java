@@ -1,4 +1,4 @@
-package nagarro.nagarroProject.config;
+package nagarro.nagarroproject.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,9 +25,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
        
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                	.antMatchers("/main").hasAnyAuthority("User1","User2")
+        http.authorizeRequests()
+                	.antMatchers("/main").hasAnyAuthority("User1","User2","UserTest")
                     .antMatchers(
                             "/js/**",
                             "/css/**",
@@ -53,17 +52,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
    
 
-    /*@Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
-    }
-*/
-    
+    @Override
     @Autowired
 	public void configure(AuthenticationManagerBuilder authenticationMgr) throws Exception {
 		authenticationMgr.inMemoryAuthentication()
 		.passwordEncoder(passwordEncoder).withUser("user").password(passwordEncoder.encode("user")).authorities("User2").and()
-				.withUser("admin").password(passwordEncoder.encode("admin")).authorities("User1");
+				.withUser("admin").password(passwordEncoder.encode("admin")).authorities("User1").and()
+				.withUser("test").password(passwordEncoder.encode("test")).authorities("UserTest");
 		
 	}
 }
