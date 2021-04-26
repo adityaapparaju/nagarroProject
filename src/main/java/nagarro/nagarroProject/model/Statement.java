@@ -1,7 +1,6 @@
-package nagarro.nagarroProject.model;
+package nagarro.nagarroproject.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 
 
@@ -58,6 +57,16 @@ public class Statement
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
+	
+	
+
+	public Statement(Integer id, Double accountId, String dateField, BigDecimal amount) {
+		super();
+		this.id = id;
+		this.accountId = accountId;
+		this.dateField = dateField;
+		this.amount = amount;
+	}
 
 	public Statement(Integer id, Double accountId, String date, BigDecimal amount, String accountNumber) {
 		super();
@@ -66,6 +75,9 @@ public class Statement
 		this.dateField = date;
 		this.amount = amount;
 		this.accountNumber = accountNumber;
+	}
+
+	public Statement() {
 	}
 	
 	
