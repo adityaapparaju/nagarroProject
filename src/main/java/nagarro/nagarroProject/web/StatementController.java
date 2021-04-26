@@ -36,7 +36,11 @@ public class StatementController {
     
     private static final Logger log = LoggerFactory.getLogger(StatementController.class);
     
-    @GetMapping("/login")
+    private static final String messageAttribute = "message";
+    
+    private static final String statementListAttribute = "statementList";
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
         return "login";
     }
@@ -133,7 +137,7 @@ public class StatementController {
 		        				statementListFromToAmount.add(statement);
 		        			}
 		        		}
-		            	log.info("statement list: " + statementListFromToAmount);
+		            	log.info("statement list from and to amount: " + statementListFromToAmount);
 			            statementListFinal = statementListFromToAmount;
 		
 		    			
@@ -154,7 +158,7 @@ public class StatementController {
 		        				statementListFromToDate.add(statement);
 		        			}
 		        		}
-		            	log.info("statement list: " + statementListFromToDate);
+		            	log.info("statement list from and to date: " + statementListFromToDate);
 			            statementListFinal = statementListFromToDate;
 		
 		    			
@@ -177,7 +181,7 @@ public class StatementController {
 		    			    	statementListAllDetails.add(statement);
 		        			}
 		        		}
-		            	log.info("statement list: " + statementListAllDetails);
+		            	log.info("statement list of all details: " + statementListAllDetails);
 			            statementListFinal = statementListAllDetails;
 		
 		    			
@@ -215,7 +219,7 @@ public class StatementController {
 		    
 		    			}
 		    		}
-		        	log.info("statement list: " + statementListThreeMonths);
+		        	log.info("statement list of three months: " + statementListThreeMonths);
 		            statementListFinal = statementListThreeMonths;
 		    	}
 		    	else 
@@ -223,9 +227,9 @@ public class StatementController {
 		    		message = "insufficient privileges";
 		    	}
 	    	}
-	        model.addAttribute("statementList",statementListFinal);
+	        model.addAttribute(statementListAttribute,statementListFinal);
   
-	    	model.addAttribute("message",message );
+	    	model.addAttribute(messageAttribute,message );
 	    	log.info("view statement - end");
 	    	
     	}
@@ -233,13 +237,13 @@ public class StatementController {
     	catch(ParseException e)
     	{
     		log.error("Invalid date format" + e);
-    		model.addAttribute("message","Invalid date format" );
+    		model.addAttribute(messageAttribute,"Invalid date format" );
     		return "main";
     	}
     	catch(Exception e)
     	{
     		log.error("invalid details" + e);
-    		model.addAttribute("message","invalid details" );
+    		model.addAttribute(messageAttribute,"invalid details" );
     		return "main";
     	}
 
@@ -250,7 +254,7 @@ public class StatementController {
 
     
     
-    @GetMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String root() {
         return "login";
     }
