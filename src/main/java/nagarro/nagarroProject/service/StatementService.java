@@ -1,8 +1,8 @@
-package nagarro.nagarroProject.service;
+package nagarro.nagarroproject.service;
 
 import java.util.List;
 
-import nagarro.nagarroProject.model.Statement;
+import nagarro.nagarroproject.model.Statement;
 
 public interface StatementService {
 	
