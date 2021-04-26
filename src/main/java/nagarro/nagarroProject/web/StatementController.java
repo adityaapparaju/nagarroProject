@@ -66,7 +66,7 @@ public class StatementController {
     
     
     @RequestMapping(value = "/main", method = RequestMethod.POST)
-    public String viewStatement(Model model, @ModelAttribute("statement") @Valid StatementDto statementDto) {
+    public String view(Model model, @ModelAttribute("statement") @Valid StatementDto statementDto) {
 
     	log.info("view statement - start");
     	
