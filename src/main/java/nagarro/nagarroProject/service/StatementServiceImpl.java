@@ -1,12 +1,12 @@
-package nagarro.nagarroProject.service;
+package nagarro.nagarroproject.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import nagarro.nagarroProject.model.Statement;
-import nagarro.nagarroProject.repository.StatementRepository;
+import nagarro.nagarroproject.model.Statement;
+import nagarro.nagarroproject.repository.StatementRepository;
 
 @Service
 public class StatementServiceImpl implements StatementService
@@ -19,7 +19,6 @@ public class StatementServiceImpl implements StatementService
 
 	@Override
 	public List<Statement> findAll() {
-		// TODO Auto-generated method stub
 		return statementRepository.findAll();
 	}
 
@@ -27,7 +26,6 @@ public class StatementServiceImpl implements StatementService
 
 	@Override
 	public List<Statement> findAllByAccountId(Double id) {
-		// TODO Auto-generated method stub
 		return statementRepository.findAllByAccountId(id);
 	}
 
