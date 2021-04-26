@@ -1,11 +1,7 @@
-package nagarro.nagarroProject.web.dto;
+package nagarro.nagarroproject.web.dto;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 
 public class StatementDto {
 
@@ -23,7 +19,10 @@ public class StatementDto {
 	private String toDate;
 
 
-
+    public boolean isValidAccount()
+    {
+    	return accountId != null && accountId >=0.0;
+    }
 
 	public Double getAccountId() {
 		return accountId;
