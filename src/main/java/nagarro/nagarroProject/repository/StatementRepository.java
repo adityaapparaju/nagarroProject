@@ -1,9 +1,8 @@
-package nagarro.nagarroProject.repository;
+package nagarro.nagarroproject.repository;
 
-import java.text.ParseException;
 import java.util.List;
 
-import nagarro.nagarroProject.model.Statement;
+import nagarro.nagarroproject.model.Statement;
 
 public interface StatementRepository {
 
