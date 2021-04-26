@@ -1,6 +1,6 @@
-package nagarro.nagarroProject.model;
+package nagarro.nagarroproject.model;
 
-
+import java.util.List;
 
 public class Account {
 	
@@ -13,10 +13,22 @@ public class Account {
 	public Integer getId() {
 		return id;
 	}
+	
+	private List<Statement> statement;
 
-	public void setID(Integer id) {
-		id = id;
+	public List<Statement> getStatement() {
+		return statement;
 	}
+
+	public void setStatement(List<Statement> statement) {
+		this.statement = statement;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	
 
 	public String getAccountType() {
 		return accountType;
