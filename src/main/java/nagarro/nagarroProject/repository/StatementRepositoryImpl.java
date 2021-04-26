@@ -1,19 +1,16 @@
-package nagarro.nagarroProject.repository;
+package nagarro.nagarroproject.repository;
 
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Repository;
 
-import nagarro.nagarroProject.config.SecurityConfiguration;
-import nagarro.nagarroProject.model.Statement;
+import nagarro.nagarroproject.config.SecurityConfiguration;
+import nagarro.nagarroproject.model.Statement;
 
 @Repository
 public class StatementRepositoryImpl implements StatementRepository {
@@ -24,7 +21,6 @@ public class StatementRepositoryImpl implements StatementRepository {
 	@Autowired
 	SecurityConfiguration securityConfiguration;
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public List<Statement> findAllByAccountId(Double accountId) {
 		// TODO Auto-generated method stub
