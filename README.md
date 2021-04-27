@@ -6,6 +6,8 @@ User1 (admin): The user is the admin that can view bank statements for both date
 
 User2 (user): The user can only view statements for three month statements.
 
+UserTest (test user): The user to be used as a test user.
+
 
 The user is required to login to the application:
 
@@ -75,6 +77,14 @@ Otherwise, insufficient privileges message is provided
 
 
 
+login as test:
+
+![test login](https://user-images.githubusercontent.com/83164368/116208557-1831b600-a752-11eb-8bc4-b2df731d136c.png)
+
+
+After successful login, if the test user tried to include any parameter, a messsage will be displayed as with http status 401 UNAUTHORIZED
+
+![test - unauthorized](https://user-images.githubusercontent.com/83164368/116208387-ef112580-a751-11eb-8224-333be5d40f4d.png)
 
 
 
