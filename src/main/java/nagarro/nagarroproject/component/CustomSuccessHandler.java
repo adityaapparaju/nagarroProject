@@ -24,7 +24,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		for (GrantedAuthority grantedAuthority : authorities) {
-			if (grantedAuthority.getAuthority().equals("User1") || grantedAuthority.getAuthority().equals("User2")) {
+			if (grantedAuthority.getAuthority().equals("User1") || grantedAuthority.getAuthority().equals("User2")
+					|| grantedAuthority.getAuthority().equals("UserTest")) {
 				redirectUrl = "/main";
 				break;
 			} 
