@@ -23,7 +23,6 @@ public class StatementRepositoryImpl implements StatementRepository {
 	
 	@Override
 	public List<Statement> findAllByAccountId(Double accountId) {
-		// TODO Auto-generated method stub
 		
 		return  jdbcTemplate.query(
                 "select a.account_number as accNumber, "
@@ -43,7 +42,6 @@ public class StatementRepositoryImpl implements StatementRepository {
 
 	@Override
 	public List<Statement> findAll() {
-		// TODO Auto-generated method stub
 		return jdbcTemplate.query(
 				 "select a.account_number as accNumber, "
 			                + "s.ID as stId, s.datefield as stDateField, s.account_id as stAccId,"
