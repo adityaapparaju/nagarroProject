@@ -22,6 +22,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 import nagarro.nagarroproject.model.Statement;
 import nagarro.nagarroproject.service.StatementService;
@@ -128,20 +129,21 @@ SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
     message = "insufficient privileges";
     }
     }
-    else if (isUserTest(auth))
-    {
-    if (isAnyParameter(statementDto))
-    {
-    throw new Exception(HttpStatus.UNAUTHORIZED + " : unauthorized to access");
-    }
-    }
+    
+    else checkUserTestAction(statementDto, auth);
        model.addAttribute("statementList",statementListFinal);
  
     model.addAttribute(MESSAGE_ATTRIBUTE,message );
     log.info("view statement - end");
    
     }
-   
+    catch(ResponseStatusException e)
+    {
+    	log.error(String.format("access details %s", e.getMessage()));
+
+        model.addAttribute(MESSAGE_ATTRIBUTE,e.getMessage() );
+        return "main";
+    }
     catch(ParseException e)
     {
     log.error(String.format("Invalid date format %s", e));
@@ -382,5 +384,13 @@ return statementDto.getAccountId() != null || statementDto.getFromAmount() != nu
 || statementDto.getFromDate() != null || statementDto.getToDate() != null;
 }
 
+public void checkUserTestAction(StatementDto statementDto,Authentication auth) throws ResponseStatusException
+{
+	if (auth != null && auth.getAuthorities() != null && !auth.getAuthorities().isEmpty() &&
+		    auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("UserTest")) && isAnyParameter(statementDto))
+    {
+    throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, " : unauthorized to access");
+    }
+}
 
 }
