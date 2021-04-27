@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: nagarro.nagarroproject.web.StatementControllerTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.028 s <<< FAILURE! - in nagarro.nagarroproject.web.StatementControllerTest
+testLogin  Time elapsed: 0.027 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at nagarro.nagarroproject.web.StatementControllerTest.testLogin(StatementControllerTest.java:11)
+
+testMain  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at nagarro.nagarroproject.web.StatementControllerTest.testMain(StatementControllerTest.java:17)
+
